@@ -1,14 +1,12 @@
 #include <stdio.h>
 void main() {
 	int x = 0;
-	printf("nhap gia tri cua x");
+	printf("nhap vao gia tri cua x: \n");
 	scanf_s("%d", &x);
-	if (x > 0) {
-		printf(" la so duong\n");
+	if (x % 2 == 0) {
+		printf(" day la so chan");
 	}
 	else {
-		printf(" la so am");
+		printf(" day la so le");
 	}
-		
-	
 }
