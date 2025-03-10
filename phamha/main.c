@@ -1,20 +1,22 @@
 #include <stdio.h>
 
 void main() {
-	float a = 0.0;
-	printf("nhap gia tri cua a :");
-	scanf_s("%f", &a);
-	if (a >= 8.0) {
-		printf(" gioi");
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	printf("nhap vao gia tri a:");
+	scanf_s("%d", &a);
+	printf("nhap vao gia tri b:");
+	scanf_s("%d", &b);
+	printf("nhap vao gia tri c:");
+	scanf_s("%d", &c);
+	if (a > b && a > c) {
+		printf(" gia tri lon nhat la a");
 	}
-	else if (a < 8.0 && a >= 6.5){
-		printf(" kha ");
-}
-	else if (a < 6.5 && a >= 5.0) {
-		printf(" trung binh ");
-}
-	
+	else if (b > a && b > c) {
+		printf("gia tri lon nhat la b ");
+	}
 	else {
-		printf(" yeu ");
+		printf(" gia tri lon nhat la c ");
 	}
 }
