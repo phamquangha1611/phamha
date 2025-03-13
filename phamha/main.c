@@ -1,15 +1,13 @@
 #include <stdio.h>
-int main() {
-	int loi = 0;
-	for (int i = 1; i > 0; i++) {
-		printf("nhap vao so: ");
-		scanf_s("%d", &i);
-		if (i == 0) {
-			break;
+void main() {
+	int sum_arr = 0;
+	int arr[10];
+	for (int i = 0; i < 10; i++) {
+		printf(" nhap phan tu cua mang:  %d", i );
+		scanf_s("%d", & arr[i]);
+		sum_arr += arr[i];
 		}
-		if (loi >= 5) {
-			printf(" nhap sai qua so lan");
-		}
-		}
+	
+	printf(" tong la:  %d", sum_arr);
 	}
 
