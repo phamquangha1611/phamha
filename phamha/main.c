@@ -1,12 +1,15 @@
 #include <stdio.h>
 int main() {
-	int n = 0;
-	printf("nhap gia tri cua n:");
-    scanf_s("%d", &n);
-	int tong = 0;
-	for (int i = 1; i <= n; i++) {
-		tong = tong + i;
-		
+	int loi = 0;
+	for (int i = 1; i > 0; i++) {
+		printf("nhap vao so: ");
+		scanf_s("%d", &i);
+		if (i == 0) {
+			break;
+		}
+		if (loi >= 5) {
+			printf(" nhap sai qua so lan");
+		}
+		}
 	}
-	printf(" tong la: %d", tong);
-}
+
