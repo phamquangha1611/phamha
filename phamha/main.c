@@ -1,17 +1,12 @@
 #include <stdio.h>
 void main() {
-	int arr[] = { 1,2,3,4,4,5,5,3,2,2,4,5 };
-	int so_lon_nhat = 0;
-	int so_luong_doi_tuong = sizeof(arr) / sizeof(arr[0]);
-	for (int i = 0; i < so_luong_doi_tuong; i++) {
-		if (so_lon_nhat < arr[i]) {
-			so_lon_nhat = arr[i];
+	int arr[] = { 1,-1,-2,-3,-4,-5,-6,-7,-8 };
+	int i = 0;
+	for ( ; i< 10; i++){
+		if (arr[i] < 0){
+			arr[i] = 0;
 		}
-		for (int i = 0; i < so_luong_doi_tuong; i++) {
-			if (arr[i] == so_lon_nhat)
-				printf("%d ", i);
-		}
-
 	}
+	printf(" in cac gia tri am bang 0: %d", arr[i]);
 }
 	
