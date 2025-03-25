@@ -1,39 +1,53 @@
+ï»¿
 #include <stdio.h>
+typedef struct hoc_sinh {
+	char* ten;
+	int tuoi;
+	float diem_toan;
+	float diem_van;
+	float diem_trung_binh;
+	float xep_loai;
 
-int main() {
-    int n, i;
-    double x, S = 0, sum = 0, sign = 1;
-
-    // Nh?p n và x t? bàn phím
-    printf("Nh?p n (nguyên d??ng): ");
-    scanf("%d", &n);
-    printf("Nh?p x: ");
-    scanf("%lf", &x);
-
-    // Ki?m tra ?i?u ki?n h?p l?
-    if (n <= 0) {
-        printf("n ph?i là s? nguyên d??ng!\n");
-        return 1;
-    }
-
-    // Tính t?ng S theo công th?c
-    for (i = 1; i <= n; i++) {
-        sum += i; // Tính t?ng 1 + 2 + ... + i
-        S += sign * (x / sum); // C?ng ho?c tr? theo d?u (-1)^(i+1)
-        sign *= -1; // ??i d?u
-    }
-
-    // Thêm giá tr? 1 vào t?ng S
-    S += 1;
-
-    // In k?t qu?
-    printf("T?ng S = %.6lf\n", S);
-
-    return 0;
+}hoc_sinh_t;
+hoc_sinh_t DiemTBvaXepLoai(hoc_sinh_t* mang_hs, int so_luong) {
+	float diemtb = 0;
+	for (int i = 0; i < so_luong;i++) {
+		diemtb = (float)(mang_hs[i].diem_toan + mang_hs[i].diem_van) / 2;
+		if (diemtb >= 8) {
+			mang_hs[i].xep_loai = 'gioi';
+		}
+		else if (diemtb >= 6.5 && diemtb < 8) {
+			mang_hs[i].xep_loai = 'kha';
+		}
+		else if (diemtb >= 5 && diemtb < 6.5) {
+			mang_hs[i].xep_loai = 'tb';
+		}
+		else {
+			mang_hs[i].xep_loai = 'yeu';
+		}
+	}
 }
 
-	
-		
-	
+void  main() {
+	hoc_sinh_t hocsinh[] = {
+		{"nguyen van a",19,8,7},
+		{ "nguyen van a",19,9,6 },
+		{ "nguyen van a",19,5,4 },
+		{ "nguyen van a",19,6.5,7 },
+		{ "nguyen van a",19,8.2,7.4 },
+		{ "nguyen van a",19,5.6,7.8 },
+		{ "nguyen van a",19,8,4.3 },
+	};
+	hoc_sinh_t C = DiemTBvaXepLoai(hocsinh, 7);
+	printf("diem TB va xep loai: %f/%f", C.diem_trung_binh, C.xep_loai);
+}
 
-	
+
+
+
+
+
+
+
+
+
