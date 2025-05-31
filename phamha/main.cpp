@@ -1,47 +1,38 @@
 ﻿#include <stdio.h>
-#include <math.h>
-#include<iostream>
-class giai_phuong_trinh_bac_2 {
-	float a;
-	float b;
-	float c;
-	float x1;
-	float x2;
-	float x;
-public:
-	void nhapheso() {
-		printf("Nhap he so a, b, c: ");
-		scanf_s("%f %f %f", &a, &b, &c);
-	}
-	double delta() {
-		return b * b - (4 * a * c);
-	}
-	void giai_pt() {
-		if (a == 0)
-		{
-			if (b != 0) {
-				x = -c / b;
-				printf("Phuong trinh la bac nhat va co nghiem la x = %f\n", x);
-			}
-			else printf("Phuong trinh vo nghiem.\n");
+#include<string.h>
+typedef struct {
+	char light;
+	char fan;
+	char motor;
+}smartHome_t;
+char getStatus(char* data, char* key) {
+	char* vitri = strstr(data, key);
+	if (vitri != NULL) {
+		char* vitri_on = strstr(vitri, "\"on\"");
+		char* vitri_off = strstr(vitri, "\"off\"");
+		if (vitri_on != NULL && (vitri_off == NULL || vitri_on < vitri_off)) {
+			return 1;
 		}
-		else if (delta() < 0) {
-			printf("Phuong trinh vo nghiem.\n");
-		}
-		else if (delta() == 0) {
-			x = -b / (2 * a);
-			printf("Nghiem cua phuong trinh la : x = %f", x);
-		}
-		else {
-			x1 = (-b - sqrt(delta())) / (2 * a);
-			x2 = (-b + sqrt(delta())) / (2 * a);
-			printf("Phuong trinh co 2 nghiem la x1 = %.2f\t x2 = %.2f\n", x1, x2);
+		else if (vitri_off != NULL) {
+			return 0;
 		}
 	}
-};
-int main() {
-	giai_ptb2 A;
-	A.nhapheso();
-	A.giai_pt();
-	return 0;
+	return -1;
+}
+smartHome_t device_status(char* data) {
+	smartHome_t status;
+	status.fan = getStatus(data, "\"fan\"");
+	status.light = getStatus(data, "\"light\"");
+	status.motor = getStatus(data, "\"motor\"");
+	return status;
+}
+void main() {
+	const char* data_device = "HTTP1.1 200 OK{"
+		"\"light\": \"on\","
+		"\"fan\": \"on\","
+		"\"motor\": \"off\"}";
+	smartHome_t result = device_status(data_device);
+	printf("fan: %d\n", result.fan);
+	printf("light: %d\n", result.light);
+	printf("motor: %d\n", result.motor);
 }
